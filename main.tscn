@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qg1gvxogyydx" path="res://wand01.png" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://do0f1vma7ydg1" path="res://Cajado.gd" id="6_cajado"]
 [ext_resource type="PackedScene" path="res://ghost.tscn" id="7_ghost"]
+[ext_resource type="Script" uid="uid://boopobodd7nod" path="res://ghost_spawner.gd" id="8_5vw27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_grid01"]
 texture = ExtResource("5_grid01")
@@ -25,6 +26,7 @@ tile_set = SubResource("TileSet_1bvp3")
 script = ExtResource("3_grass_floor")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1629821493 groups=["player"]]
+z_index = 1
 position = Vector2(320, 192)
 script = ExtResource("1_player")
 
@@ -57,5 +59,20 @@ text = "Move: W A S D | Shoot: Left click"
 texture = ExtResource("5_lquwl")
 script = ExtResource("6_cajado")
 
+[node name="lifeBar" type="ProgressBar" parent="Player" unique_id=399621193]
+offset_right = 4.0
+offset_bottom = 27.0
+
 [node name="Ghost" parent="." unique_id=1377044387 instance=ExtResource("7_ghost")]
-position = Vector2(400, 192)
+z_index = 10
+position = Vector2(391, 180)
+
+[node name="ghostSpawner" type="Node2D" parent="." unique_id=839523568]
+script = ExtResource("8_5vw27")
+ghost_scene = ExtResource("7_ghost")
+
+[node name="Timer" type="Timer" parent="ghostSpawner" unique_id=2141128154]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="ghostSpawner/Timer" to="ghostSpawner" method="_on_timer_timeout"]

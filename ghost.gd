@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name Ghost
 
-@export var vida_maxima: int = 3
+@export var vida_maxima: int = 2
 @export var velocidade: float = 40.0
-@export var distancia_de_deteccao: float = 120.0
+@export var distancia_de_deteccao: float = 1500.0
 
 @onready var barra_de_vida: ProgressBar = $BarraDeVida
 @onready var sprite: Sprite2D = $Sprite2D
