@@ -1,34 +1,30 @@
 [gd_scene format=3 uid="uid://bcv86afbj7smd"]
 
 [ext_resource type="Script" uid="uid://bph4u6fx1auen" path="res://player.gd" id="1_player"]
-[ext_resource type="Script" uid="uid://2y84r0x2mcke" path="res://grass_floor.gd" id="3_grass_floor"]
+[ext_resource type="Texture2D" uid="uid://cehnyk8iavj53" path="res://tile02.png" id="2_grass"]
 [ext_resource type="Texture2D" uid="uid://djdghdnn66417" path="res://frog01.png" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://b6w806860ejju" path="res://grid01.png" id="5_grid01"]
 [ext_resource type="Texture2D" uid="uid://qg1gvxogyydx" path="res://wand01.png" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://do0f1vma7ydg1" path="res://Cajado.gd" id="6_cajado"]
 [ext_resource type="PackedScene" path="res://ghost.tscn" id="7_ghost"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_grid01"]
-texture = ExtResource("5_grid01")
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_1bvp3"]
-sources/0 = SubResource("TileSetAtlasSource_grid01")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(22, 22)
+size = Vector2(24, 48)
 
 [node name="Main" type="Node2D" unique_id=843514068]
 
-[node name="GrassFloor" type="TileMapLayer" parent="." unique_id=1060528388]
-tile_set = SubResource("TileSet_1bvp3")
-script = ExtResource("3_grass_floor")
+[node name="GrassFloor" type="Sprite2D" parent="." unique_id=1060528388]
+texture_repeat = 2
+position = Vector2(640, 368)
+texture = ExtResource("2_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 736)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1629821493 groups=["player"]]
 position = Vector2(320, 192)
 script = ExtResource("1_player")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1583568812]
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_1bvp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=299785730]
@@ -54,6 +50,7 @@ theme_override_font_sizes/font_size = 12
 text = "Move: W A S D | Shoot: Left click"
 
 [node name="cajado" type="Sprite2D" parent="Player" unique_id=775017800]
+scale = Vector2(2, 2)
 texture = ExtResource("5_lquwl")
 script = ExtResource("6_cajado")
 
